@@ -160,9 +160,9 @@ python3 -m pip install 'NomePacote>=1.0.4' # versão mínima
 ```
 
 **Exemplos comuns de opções no comando de instalação**
-- --proxy http://my_username:my_password@proxy.corp:8080
-- --index-url http://my-package-repo.company/simple/
-- --trusted-host my-package-repo.company:80
+- `--proxy http://my_username:my_password@proxy.corp:8080`
+- `--index-url http://my-package-repo.company/simple/`
+- `--trusted-host my-package-repo.company:80`
 
 **Instalação de uma lista de dependências especificadas em um arquivo**
 
