@@ -1,47 +1,64 @@
 # python-base
-Repositório para estudos e práticas do curso Python Base da LINUXtips
+Repositório para estudos e práticas do curso Python Base da LINUXtips.
 
-# Conteúdo
+## Conteúdo
 - [Dicas](#dicas)
 - [Pyenv](#pyenv)
-- [Sheband](#shebang)
+- [Shebang](#shebang)
 - [Docstring e Metadados Dunder](#docstring-e-metadados-dunder)
 - [Ambiente Virtual](#ambiente-virtual)
 - [Pip](#pip)
 - [Encode/Decode UTF-8](#encodedecode-utf-8)
 - [Interpolação e Formatação de Textos](#interpolação-e-formatação-de-textos)
 
+
 ## Dicas
 - `python3 -m site` - obtém informações sobre os caminhos de instalação do Python 3
 - `dir(objeto)` - obtém uma lista de métodos especiais, atributos e métodos de funcionalidades do objeto
 
+
 ## Pyenv
 O pyenv é uma CLI que permite instalar múltiplas versões do Python e gerenciar seu uso em escopo global da máquina ou local (em um diretório específico).
 
-**Instalação do pyenv no MacBook**  
+**Instalação do pyenv no MacBook**
+
 ```shell
 brew update
 brew install pyenv
 ```
 
-**Upgrade do pyenv**  
+**Upgrade do pyenv**
+
 `brew upgrade pyenv`
 
-**Lista de Python 3 disponíveis**  
+**Lista de Python 3 disponíveis**
+
 `pyenv install -l | grep -E "^  3(\.[0-9]*){2}$"`
 
-**Instalação do Python com pyenv**  
+**Instalação do Python com pyenv**
+
 `pyenv install 3.11`
 
-**Lista de versões do Python já instaladas**  
+**Lista de versões do Python já instaladas**
+
 `pyenv versions`
 
-**Escolha de versão do Python**  
+**Escolha de versão do Python**
+
 - `pyenv shell <version>` - sessão do shell
 - `pyenv local <version>` - diretório local
 - `pyenv global <version>` - escopo global do usuário da máquina
 
+**Remoção de uma versão do Python com pyenv**
+
+`pyenv uninstall 3.11`
+
+**Caminho de instalação do Python**
+
+`pyenv which python3`
+
 Para mais informações, [clique aqui](https://github.com/pyenv/pyenv#readme).
+
 
 ## Shebang
 Em ambientes Linux é muito importante definir o comentário especial Shebang dentro do arquivo Python. Nele, especificamos qual interpretador será usado para executar o programa.
@@ -55,9 +72,11 @@ print('Hello, World!')
 A primeira linha informa o terminal que aquele programa roda com o Python 3 da `env` em execução, dessa forma, é possível omitir o interpretador e executar o script diretamente pelo seu nome.
 
 Antes precisamos dar permissão de execução no script:
+
 `chmod +x hello_world.py`
 
 Agora podemos executar de 2 formas:
+
 ```shell
 # Especificando o interpretador na linha de comando
 python3 hello_world.py
@@ -68,6 +87,7 @@ python3 hello_world.py
 
 A vantagem da segunda forma é que podemos alterar a extensão de `.py` para qualquer coisa, ou podemos até remover a extensão do arquivo e executar `./hello_world` .
 
+
 ## Docstring e Metadados Dunder
 Em todo script Python é uma boa prática incluir um comentário de multi linhas nas primeiras linhas do script explicando o objetivo do script e provendo uma documentação para o usuário.
 
@@ -75,17 +95,13 @@ Em todo script Python é uma boa prática incluir um comentário de multi linhas
 #!/usr/bin/env python3
 
 """Hello World Multi Linguas
-
 Dependendo do idioma configurado no ambiente o programa exibe a mensagem correspondente.
 
 Como usar:
-
 Tenha a variável LANG devidamente configurada. Ex:
-
     export LANG=pt_BR
 
 Execução:
-
     python3 hello.py
     ou
     ./hello.py
@@ -98,10 +114,12 @@ __license__ = "Unlicense"
 
 E além do comentário de documentação, chamado `docstring`, é também comum a inclusão de variavéis de metadados que iniciam e terminam com 2 underlines `__` , a palavra que usamos para designar essas variavéis é `dunder` portanto, `dunder version` se refere a `__version__`.
 
+
 ## Ambiente Virtual
 O ambiente virtual é um sandbox, é uma cópia de todo o ambiente Python. A recomendação é que você tenha um ambiente virtual em cada um dos seus projetos, sendo assim, cada projeto deve usar seu próprio conjunto de bibliotecas isoladamente.
 
-**Criação de ambiente virtual**  
+**Criação de ambiente virtual**
+
 ```shell
 cd python-base
 python3 -m venv .venv
@@ -126,14 +144,48 @@ Outra forma de verificar qual ambiente Python está ativado é usando o comando 
 
 > **IMPORTANTE** sempre que abrir um terminal, antes de executar os comandos, é necessário ativar o ambiente virtual do seu projeto.
 
+
 ## Pip
 Pip é o gerenciador de pacotes padrão do Python e com essa ferramenta é possível instalar dependências para os nossos projetos.
 
-**Atualização do próprio pip**
+**Atualização de um pacote já instalado**
 `python3 -m pip install --upgrade pip`
 
-Com o pip atualizado, vamos instalar nosso primeiro pacote, chamado IPython:
-`python3 -m pip install ipython`
+**Instalação de pacotes**
+
+```shell
+python3 -m pip install NomePacote          # última versão
+python3 -m pip install 'NomePacote==1.0.4' # versão específica
+python3 -m pip install 'NomePacote>=1.0.4' # versão mínima
+```
+
+**Exemplos comuns de opções no comando de instalação**
+- --proxy http://my_username:my_password@proxy.corp:8080
+- --index-url http://my-package-repo.company/simple/
+- --trusted-host my-package-repo.company:80
+
+**Instalação de uma lista de dependências especificadas em um arquivo**
+
+`python3 -m pip install -r requirements.txt`
+
+**Lista de pacotes instalados**
+
+`python3 -m pip list`
+
+**Informações de um pacote já instalado**
+
+`python3 -m pip show nome-pacote`
+
+**Remoção de pacote**
+
+`python3 -m pip uninstall nome-pacote`
+
+**Verificação de dependências quebradas**
+
+`python3 -m pip check`
+
+Para mais informações, [clique aqui](https://pip.pypa.io/en/stable/cli/).
+
 
 ## Encode/Decode UTF-8
 Eventualmente, durante a programação com Python, podemos ter a necessidade de salvar em um banco de dados ou transmitir textos contendo caracteres especiais ou até mesmo emojis. 
