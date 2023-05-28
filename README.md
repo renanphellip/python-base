@@ -210,8 +210,21 @@ fruit.decode('utf-8')
 🍉
 ```
 
+O Python também oferece maneiras alternativas simples de imprimir emojis:
+
+```python
+# Usando código hexadecimal do emoji
+>>> print('\U0001F34F') # \U000 + hexadecimal
+🍏
+
+# Digitando o nome do emoji
+>>> print('\N{green apple}')
+🍏
+```
+
 ## Interpolação e Formatação de Textos
-`%`
+Interpolação utilizando `%`
+
 ```python
 >>> mensagem = "Olá %s, você é o participante número %d e pode ganhar %.2f pontos."
 >>> nome = "Renan"
@@ -221,7 +234,8 @@ fruit.decode('utf-8')
 Olá Renan, você é o participante número 4 e pode ganhar 42.50 pontos.
 ```
 
-Também é possível utilizar parâmetros nomeados.
+Também é possível utilizar parâmetros nomeados com `%`
+
 ```python
 >>> mensagem = "Olá %(nome)s, você é o participante número %(num)d e pode ganhar %(pontos).2f pontos."
 >>> print(mensagem % {
@@ -232,14 +246,28 @@ Também é possível utilizar parâmetros nomeados.
 Olá Renan, você é o participante número 4 e pode ganhar 42.50 pontos.
 ```
 
-`format`
+> Interpolação com `%` caiu em desuso por conta das alternativas `format` e `f strings`.
+
+Concatenação com `format`
+
 ```python
 >>> mensagem = "Olá {:s}, você é o participante número {:d} e pode ganhar {:.2f} pontos."
 >>> print(mensagem.format(nome, numero, pontos))
 Olá Renan, você é o participante número 4 e pode ganhar 42.50 pontos.
 ```
 
-Exemplos:
+Também é possível nomear as posições com `format`
+
+```python
+>>> mensagem = "Olá {nome}, você é o participante número {numero} e pode ganhar {pontos:.2f} pontos."
+>>> print(mensagem.format(nome="Renan", numero=4, pontos=42.50))
+Olá Renan, você é o participante número 4 e pode ganhar 42.50 pontos.
+```
+
+> O uso de `format` tem diminuido com o surgimento de `f strings` no Python 3, mas ainda deve ser utilizado com a biblioteca `logging`.
+
+Formatando textos com `format`
+
 ```python
 # Centralizar fazendo ocupar exatamente 11 caracteres.
 >>> "{:^11}".format("Renan")
@@ -253,7 +281,19 @@ Exemplos:
 >>> "{:*^11}".format("Renan")
 '***Renan***'
 
-# Definindo tipo e precisão para números
+# Definindo tipo e precisão para números flutuantes
 >>> "{:*^11.2f}".format(45.300041)
 '***45.30***'
 ```
+
+Concatenação com `f strings`
+
+```python
+>>> mensagem = f"Olá {nome}, você é o participante número {numero} e pode ganhar {pontos:.2f} pontos."
+>>> print(mensagem)
+Olá Renan, você é o participante número 4 e pode ganhar 42.50 pontos.
+```
+
+> Devido sua facilidade, é recomendado o uso de `f strings` para todos os demais cenários de formatação de textos.
+
+Para mais informações, [clique aqui](https://pyformat.info)
