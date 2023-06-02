@@ -10,6 +10,8 @@ Repositório para estudos e práticas do curso Python Base da LINUXtips.
 - [Pip](#pip)
 - [Encode/Decode UTF-8](#encodedecode-utf-8)
 - [Interpolação e Formatação de Textos](#interpolação-e-formatação-de-textos)
+- [Tuplas](#tuplas)
+- [Sets](#sets)
 
 
 ## Dicas
@@ -297,3 +299,121 @@ Olá Renan, você é o participante número 4 e pode ganhar 42.50 pontos.
 > Devido sua facilidade, é recomendado o uso de `f strings` para todos os demais cenários de formatação de textos.
 
 Para mais informações, [clique aqui](https://pyformat.info)
+
+
+## Tuplas
+A tupla é um tipo de dados composto e imutável que pode ser declarada da seguinte maneira:
+
+```python
+dados = ("Renan", 15, True, None, 57.7)
+# ou sem parenteses
+dados = "Renan", 15, True, None, 57.7
+```
+
+Contabilizar a quantidade de um valor existente dentro da tupla
+
+```python
+dados.count("Renan")
+1
+```
+
+Desempacotamento de tupla
+
+```python
+pontos = 1000, 1030, 7
+x, y, z = pontos
+x # 1000
+y # 1030
+z # 7
+```
+
+Desempacotamento de tupla, mas descartando valores utilizando a convensão `*_`
+
+```python
+x, *_ = pontos
+x # 1000
+_ # [1030, 7]
+```
+
+Desempacotamento de tupla, recuperando o primeiro e último valor, e descartando o restante
+
+```python
+pontos = (500, 125, 607, 711, 808)
+head, *body, tail = pontos
+head # 500
+body # [125, 607, 711]
+tail # 808
+```
+
+Para mais informações, [clique aqui](https://www.w3schools.com/python/python_tuples.asp)
+
+
+## Sets
+
+Conjuntos são muito úteis para resolver problemas reais do dia a dia, aqui está dois exemplos importantes:
+
+1. Imagine em uma rede social como o Instagram, no conjunto A estão as pessoas que você segue, no conjunto B estão as que te seguem de volta, com este objeto (`set`) você consegue determinar rapidamente quem não está te seguindo de volta.
+
+2. Performance: fazer buscas em sequência é uma operação custosa, imagina você querer encontrar o nome `Anna` no meio de uma lista com 10000 nomes. O Python teria que fazer uma iteração nessa lista e ir comparando cada item `n` da lista até encontrar, e por esse motivo, temos uma complexidade algoritmica `O(n)`.
+
+    Os `sets`implementam uma hash table. É como se eles tivessem um índice gravado neles com uma tabela invertida, dizendo:
+
+    ```
+    "João" -> "Está na posição 0"
+    "Anna" -> "Está na posição 7450"
+    ```
+
+    Portanto, quando precisarmos buscar `Anna` o Python olha primeiro essa tabela e já vai diretamente na informação que está em `7450`, como se fizessemos `users[7450]` em uma lista, e a complexidade desta operação passa a ser `O(1)`, pois agora só tem uma comparação a ser feita.
+
+**Desvantagens dos Sets**
+
+- Não respeitam a ordem de inserção, os elementos são ordenados automaticamente
+- Não permitem subscrição para acesso aos valores, ou seja, você não pode fazer `set[0]` para acessar o primeiro elemento. Para isso você teria que converter o set em lista e aí sim acessar o valor da posição desejada.
+
+
+Criação de conjunto de números:
+
+```python
+conjunto = {1, 2, 3, 4, 5}
+# ou
+conjunto = set([1, 2, 3, 4, 5]) # recomendado
+```
+
+> Para criação de um conjunto, o `set` aceita qualquer objeto iterável: strings, listas, tuplas, etc.
+
+Considerando as listas abaixo, veremos a seguir os diferentes cenários
+
+```python
+conjunto_a = [1, 2, 3, 4, 5]
+conjunto_b = [4, 5, 6, 7, 8]
+```
+
+União de dois conjuntos
+
+```python
+set(conjunto_a) | set(conjunto_b)
+{1, 2, 3, 4, 5, 6, 7, 8} # conjuntos descartam valores duplicados
+```
+
+Intersecção de conjuntos (exibe o que existe em ambos)
+
+```python
+set(conjunto_a) & set(conjunto_b)
+{4, 5} # somente valores existentes em ambos conjuntos
+```
+
+Diferença entre conjuntos
+
+```python
+set(conjunto_a) - set(conjunto_b)
+{1, 2, 3} # traz somente os valores existentes no conjunto_a e 
+          # que não existe no conjunto_b
+```
+
+Diferença simétrica (não exibe o que existe em ambos)
+
+```python
+set(conjunto_a) ^ set(conjunto_b)
+{1, 2, 3, 6, 7, 8}
+```
+
