@@ -12,6 +12,7 @@ Repositório para estudos e práticas do curso Python Base da LINUXtips.
 - [Interpolação e Formatação de Textos](#interpolação-e-formatação-de-textos)
 - [Tuplas](#tuplas)
 - [Sets](#sets)
+- [Dicionários](#dicionários)
 
 
 ## Dicas
@@ -417,3 +418,83 @@ set(conjunto_a) ^ set(conjunto_b)
 {1, 2, 3, 6, 7, 8}
 ```
 
+
+## Dicionários
+
+Dicionário é um misto entre o `set` e `list` e são criados com `{ }` ou `dict()` usando chave e valor.
+
+```python
+# É possível criar um dicionário vazio e depois ir adicionando os elementos dentro dele:
+cliente = {}
+# ou
+cliente = dict()
+
+# Adicionar chave e valor:
+cliente['nome'] = 'Renan'
+
+# Ler valor a partir de uma chave:
+cliente['nome']
+
+# Alterar valor a partir de uma chave:
+cliente['nome'] = 'Renan Morais'
+
+# Deletar um valor e sua chave:
+del cliente['nome']
+```
+
+**Buscas**
+
+O dicionário implementa Hash Table, também conhecido como Hash Map, e portanto, as buscas em dicionário quando feitas por chave tem acesso constante O(1).
+
+```python
+'nome' in cliente
+True
+```
+
+**Métodos de Lookup**
+
+```python
+cliente = {
+    'nome': 'Renan',
+    'cidade': 'Araraquara'
+}
+
+# Obter uma lista de chaves:
+cliente.keys()
+dict_keys(['nome', 'cidade'])
+
+# Obter uma lista de valores:
+cliente.values()
+dict_keys(['Renan', 'Araraquara'])
+
+# Obter uma lista de tuplas contendo chave e valor:
+cliente.items()
+dict_items([('nome', 'Renan'), ('cidade', 'Araraquara')])
+
+extra = {
+    'pais': 'Brasil'
+}
+
+# Combinando 2 dicionários com desempacotamento:
+final = {**cliente, **extra}
+{'nome': 'Renan', 'cidade': 'Araraquara', 'pais': 'Brasil'}
+
+# Combinando 2 dicionários com update:
+final = cliente.update(extra)
+{'nome': 'Renan', 'cidade': 'Araraquara', 'pais': 'Brasil'}
+```
+
+**Erros**
+
+```python
+# Caso uma chave não exista no dicionário, o Python exibe um erro chamado `KeyError`:
+print(cliente['telefone'])
+KeyError 'telefone''
+
+# Para evitar o erro podemos usar o método `get`que busca a chave e caso não exista retorna um valor padrão que inicialmente é `None`:
+print(cliente.get('telefone'))
+'None'
+
+print(cliente.get('telefone', '191'))
+'191'
+```
