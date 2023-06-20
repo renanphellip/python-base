@@ -306,23 +306,23 @@ Para mais informações, [clique aqui](https://pyformat.info)
 A tupla é um tipo de dados composto e imutável que pode ser declarada da seguinte maneira:
 
 ```python
-dados = ("Renan", 15, True, None, 57.7)
+>>> dados = ("Renan", 15, True, None, 57.7)
 # ou sem parenteses
-dados = "Renan", 15, True, None, 57.7
+>>> dados = "Renan", 15, True, None, 57.7
 ```
 
 Contabilizar a quantidade de um valor existente dentro da tupla
 
 ```python
-dados.count("Renan")
+>>> dados.count("Renan")
 1
 ```
 
 Desempacotamento de tupla
 
 ```python
-pontos = 1000, 1030, 7
-x, y, z = pontos
+>>> pontos = 1000, 1030, 7
+>>> x, y, z = pontos
 x # 1000
 y # 1030
 z # 7
@@ -331,7 +331,7 @@ z # 7
 Desempacotamento de tupla, mas descartando valores utilizando a convensão `*_`
 
 ```python
-x, *_ = pontos
+>>> x, *_ = pontos
 x # 1000
 _ # [1030, 7]
 ```
@@ -339,8 +339,8 @@ _ # [1030, 7]
 Desempacotamento de tupla, recuperando o primeiro e último valor, e descartando o restante
 
 ```python
-pontos = (500, 125, 607, 711, 808)
-head, *body, tail = pontos
+>>> pontos = (500, 125, 607, 711, 808)
+>>> head, *body, tail = pontos
 head # 500
 body # [125, 607, 711]
 tail # 808
@@ -357,7 +357,7 @@ Conjuntos são muito úteis para resolver problemas reais do dia a dia, aqui est
 
 2. Performance: fazer buscas em sequência é uma operação custosa, imagina você querer encontrar o nome `Anna` no meio de uma lista com 10000 nomes. O Python teria que fazer uma iteração nessa lista e ir comparando cada item `n` da lista até encontrar, e por esse motivo, temos uma complexidade algoritmica `O(n)`.
 
-    Os `sets`implementam uma hash table. É como se eles tivessem um índice gravado neles com uma tabela invertida, dizendo:
+    Os `sets` implementam uma hash table. É como se eles tivessem um índice gravado neles com uma tabela invertida, dizendo:
 
     ```
     "João" -> "Está na posição 0"
@@ -368,56 +368,43 @@ Conjuntos são muito úteis para resolver problemas reais do dia a dia, aqui est
 
 **Desvantagens dos Sets**
 
-- Não respeitam a ordem de inserção, os elementos são ordenados automaticamente
+- Não respeitam a ordem de inserção, os elementos são ordenados automaticamente.
 - Não permitem subscrição para acesso aos valores, ou seja, você não pode fazer `set[0]` para acessar o primeiro elemento. Para isso você teria que converter o set em lista e aí sim acessar o valor da posição desejada.
 
 
 Criação de conjunto de números:
 
 ```python
-conjunto = {1, 2, 3, 4, 5}
+>>> conjunto = {1, 2, 3, 4, 5}
 # ou
-conjunto = set([1, 2, 3, 4, 5]) # recomendado
+>>> conjunto = set([1, 2, 3, 4, 5]) # recomendado
 ```
 
 > Para criação de um conjunto, o `set` aceita qualquer objeto iterável: strings, listas, tuplas, etc.
 
-Considerando as listas abaixo, veremos a seguir os diferentes cenários
+Considerando as listas abaixo, veremos os diferentes cenários...
 
 ```python
-conjunto_a = [1, 2, 3, 4, 5]
-conjunto_b = [4, 5, 6, 7, 8]
-```
+>>> conjunto_a = [1, 2, 3, 4, 5]
+>>> conjunto_b = [4, 5, 6, 7, 8]
 
-União de dois conjuntos
-
-```python
-set(conjunto_a) | set(conjunto_b)
+# União de dois conjuntos
+>>> set(conjunto_a) | set(conjunto_b)
 {1, 2, 3, 4, 5, 6, 7, 8} # conjuntos descartam valores duplicados
-```
 
-Intersecção de conjuntos (exibe o que existe em ambos)
-
-```python
-set(conjunto_a) & set(conjunto_b)
+# Intersecção de conjuntos (exibe o que existe em ambos)
+>>> set(conjunto_a) & set(conjunto_b)
 {4, 5} # somente valores existentes em ambos conjuntos
-```
 
-Diferença entre conjuntos
-
-```python
-set(conjunto_a) - set(conjunto_b)
+# Diferença entre conjuntos
+>>> set(conjunto_a) - set(conjunto_b)
 {1, 2, 3} # traz somente os valores existentes no conjunto_a e 
           # que não existe no conjunto_b
-```
 
-Diferença simétrica (não exibe o que existe em ambos)
-
-```python
-set(conjunto_a) ^ set(conjunto_b)
+# Diferença simétrica (não exibe o que existe em ambos)
+>>> set(conjunto_a) ^ set(conjunto_b)
 {1, 2, 3, 6, 7, 8}
 ```
-
 
 ## Dicionários
 
@@ -425,21 +412,21 @@ Dicionário é um misto entre o `set` e `list` e são criados com `{ }` ou `dict
 
 ```python
 # É possível criar um dicionário vazio e depois ir adicionando os elementos dentro dele:
-cliente = {}
+>>> cliente = {}
 # ou
-cliente = dict()
+>>> cliente = dict()
 
 # Adicionar chave e valor:
-cliente['nome'] = 'Renan'
+>>> cliente['nome'] = 'Renan'
 
 # Ler valor a partir de uma chave:
-cliente['nome']
+>>> cliente['nome']
 
 # Alterar valor a partir de uma chave:
-cliente['nome'] = 'Renan Morais'
+>>> cliente['nome'] = 'Renan Morais'
 
 # Deletar um valor e sua chave:
-del cliente['nome']
+>>> del cliente['nome']
 ```
 
 **Buscas**
@@ -447,40 +434,40 @@ del cliente['nome']
 O dicionário implementa Hash Table, também conhecido como Hash Map, e portanto, as buscas em dicionário quando feitas por chave tem acesso constante O(1).
 
 ```python
-'nome' in cliente
+>>> 'nome' in cliente
 True
 ```
 
 **Métodos de Lookup**
 
 ```python
-cliente = {
-    'nome': 'Renan',
-    'cidade': 'Araraquara'
-}
+>>> cliente = {
+        'nome': 'Renan',
+        'cidade': 'Araraquara'
+    }
 
 # Obter uma lista de chaves:
-cliente.keys()
+>>> cliente.keys()
 dict_keys(['nome', 'cidade'])
 
 # Obter uma lista de valores:
-cliente.values()
+>>> cliente.values()
 dict_keys(['Renan', 'Araraquara'])
 
 # Obter uma lista de tuplas contendo chave e valor:
-cliente.items()
+>>> cliente.items()
 dict_items([('nome', 'Renan'), ('cidade', 'Araraquara')])
 
-extra = {
-    'pais': 'Brasil'
-}
+>>> extra = {
+        'pais': 'Brasil'
+    }
 
 # Combinando 2 dicionários com desempacotamento:
-final = {**cliente, **extra}
+>>> final = {**cliente, **extra}
 {'nome': 'Renan', 'cidade': 'Araraquara', 'pais': 'Brasil'}
 
 # Combinando 2 dicionários com update:
-final = cliente.update(extra)
+>>> final = cliente.update(extra)
 {'nome': 'Renan', 'cidade': 'Araraquara', 'pais': 'Brasil'}
 ```
 
@@ -488,13 +475,13 @@ final = cliente.update(extra)
 
 ```python
 # Caso uma chave não exista no dicionário, o Python exibe um erro chamado `KeyError`:
-print(cliente['telefone'])
-KeyError 'telefone''
+>>> print(cliente['telefone'])
+KeyError 'telefone'
 
-# Para evitar o erro podemos usar o método `get`que busca a chave e caso não exista retorna um valor padrão que inicialmente é `None`:
-print(cliente.get('telefone'))
+# Para evitar o erro podemos usar o método `get` que busca a chave e caso não exista retorna um valor padrão que inicialmente é `None`:
+>>> print(cliente.get('telefone'))
 'None'
 
-print(cliente.get('telefone', '191'))
+>>> print(cliente.get('telefone', '191'))
 '191'
 ```
