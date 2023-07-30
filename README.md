@@ -13,6 +13,7 @@ Repositório para estudos e práticas do curso Python Base da LINUXtips.
 - [Tuplas](#tuplas)
 - [Sets](#sets)
 - [Dicionários](#dicionários)
+- [Input e Output](#input-e-output)
 
 
 ## Dicas
